@@ -13,7 +13,7 @@ const ALPHABET : &str = "23456789BCDFGHJKMNPQRTVWXY";
 /// 
 /// # Example
 /// ```
-/// use steam_totp::{generate};
+/// use simple_steam_totp::{generate};
 /// 
 /// println!("{}", generate("V59i4SUqNiuYDrssYyMz62RSI9k=").unwrap());
 /// ```
