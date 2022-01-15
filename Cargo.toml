@@ -1,5 +1,7 @@
 [package]
-name = "rs-steam-totp"
+name = "steam-totp"
+description = "Generate Steam TOTP auth codes from Rust"
+license = "MIT"
 version = "0.1.0"
 edition = "2021"
 

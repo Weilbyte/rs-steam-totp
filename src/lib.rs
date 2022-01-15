@@ -7,13 +7,23 @@ use crypto::sha1::Sha1;
 const INTERVAL : u64 = 30;
 const ALPHABET : &str = "23456789BCDFGHJKMNPQRTVWXY";
 
+/// Generate a Steam Authenticator code for the given shared secret (expected as a base64 encoded string).
+/// 
+/// You can find the shared secret within your Steam Desktop Authenticator maFile.
+/// 
+/// # Example
+/// ```
+/// use steam_totp::{generate};
+/// 
+/// println!("{}", generate("V59i4SUqNiuYDrssYyMz62RSI9k=").unwrap());
+/// ```
 pub fn generate(shared_secret: &str) -> Result<String, &'static str> {
     let counter : u64 = SystemTime::now().duration_since(SystemTime::UNIX_EPOCH).unwrap().as_secs() / INTERVAL;
     let decoded_shared_secret = match base64::decode(shared_secret) {
         Ok(decoded) => decoded,
         Err(_) => return Err("Error decoding base64 shared secret"),
     };
-       
+
     let mut hmac = Hmac::new(Sha1::new(), decoded_shared_secret.as_slice());
     hmac.input(counter.to_be_bytes().as_slice());
     let code = hmac.result().code().to_vec();
