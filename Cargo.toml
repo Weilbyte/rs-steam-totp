@@ -1,6 +1,7 @@
 [package]
 name = "simple-steam-totp"
 description = "Generate Steam TOTP auth codes from Rust"
+repository = "https://github.com/weilbyte/simple-steam-totp"
 license = "MIT"
 version = "0.1.0"
 edition = "2021"
